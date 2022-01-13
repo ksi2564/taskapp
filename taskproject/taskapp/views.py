@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, FormView, CreateView
 from .models import Task, ChecklistItem
+
 
 # Create your views here.
 
@@ -18,3 +19,10 @@ class TaskListView(TemplateView):
         return {
             'tasks': tasks
         }
+
+
+class TaskCreateView(CreateView):
+    model = Task
+    fields = ['title', 'type', 'due']
+    template_name = 'pages/task_create.html'
+    success_url = '/'
