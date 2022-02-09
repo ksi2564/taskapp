@@ -18,6 +18,16 @@
     </div>
 </div>
 
+<div class="row">
+    <div class="col-12">
+        <a href="{% url 'create-item' object.id %}">
+            <button class="btn btn-light">
+                <i class="bi bi-plus-square"></i>&nbsp;&nbsp;추가
+            </button>
+        </a>
+    </div>
+</div>
+
 <table class="table">
     <tbody>
     {% if checklists %}
