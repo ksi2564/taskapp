@@ -1,8 +1,9 @@
 {% extends "common.html" %}
+{% load pagination_tags %}
 
 {% block content %}
 <div class="row row-cols-2 row-cols-md-4 g-4 mt-2">
-    {% for item in tasks %}
+    {% for item in paging %}
     <div class="col">
         <div class="card text-white bg-primary mb-3">
             <div class="card-header">{{ item.type }}</div>
@@ -17,5 +18,36 @@
         </div>
     </div>
     {% endfor %}
+</div>
+
+<div class="row mt-4">
+    <nav class="col-12">
+        <ul class="pagination justify-content-center">
+            {% if paging.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ paging.previous_page_number }}">이전</a>
+            </li>
+            {% endif %}
+
+            {% for page in paging|slice_visible_pages %}
+            {% if paging.number == page %}
+            <li class="page-item active">
+                {% else %}
+                <li class="page-item">
+                {% endif %}
+                <a class="page-link" href="?page={{ page }}">
+                    {{ page }}
+                </a>
+            </li>
+            {% endfor %}
+
+
+            {% if paging.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ paging.next_page_number }}">다음</a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
 </div>
 {% endblock %}
