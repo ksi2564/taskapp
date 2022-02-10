@@ -35,17 +35,28 @@
         <tr>
             <td style="width:20px;">
                 {% if check.checked %}
+                <a href="{% url 'check-item' object.id check.id %}">
                 <button class="btn btn-link">
                     <i class="bi bi-check-square"></i>
                 </button>
+                </a>
                 {% else %}
+                <a href="{% url 'check-item' object.id check.id %}">
                 <button class="btn btn-link">
                     <i class="bi bi-square"></i>
                 </button>
+                </a>
                 {% endif %}
             </td>
             <td class="align-middle">
                 {{ check.content }}
+            </td>
+            <td style="width: 20px">
+                <a href="{% url 'delete-item' object.id check.id %}">
+                    <button class="btn btn-link">
+                        <i class="bi bi-x-square"></i>
+                    </button>
+                </a>
             </td>
         </tr>
     {% endfor %}
